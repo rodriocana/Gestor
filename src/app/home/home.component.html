@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="contenedor-title">
+    <h2>{{ mostrandoCompletadas ? 'LISTA DE TAREAS COMPLETADAS' : 'TO - DO LIST' }}</h2>
+  </div>
+
+  <!-- Tabla reutilizable -->
+
+<!-- Tabla reutilizable -->
+<table>
+  <thead>
+    <tr>
+      <th>Categoría</th>
+      <th>Descripción</th>
+      <th>Tiempo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tarea of tareasPagina; let i = index"
+        (click)="seleccionarFila(i)"
+        [class.selected]="seleccionado === i"
+        [ngClass]="{
+          'trabajo': tarea.categoria === 'Trabajo',
+          'estudio': tarea.categoria === 'Estudio',
+          'hogar': tarea.categoria === 'Hogar',
+          'recreacion': tarea.categoria === 'Recreación',
+          'ocio': tarea.categoria === 'Ocio'
+        }">
+      <td class="tdCat">{{ tarea.categoria }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.tiempo }} minutos</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="mostrandoCompletadas" class="chart-container">
+  <h3>Distribución de Tareas Completadas</h3>
+</div>
+
+<div class="btn-container">
+  <p style="cursor: default; padding: 10px; background-color: #005a83; border-radius: 6px;border: 2px solid black; width: fit-content;transform: translate(105px, -3px); box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.5);" *ngIf="!TareasVacias()">Total de tareas completadas {{tareasCompletadas.length}} / {{totalTareasInicial}}</p>
+
+
+  <div class="icon-tic-container" *ngIf="!mostrandoCompletadas">
+      <!-- una de las formas para deshabiliar un boton , usando la clase en css btn-icon-tic.disabled-->
+    <button class="button-completarTarea"  [disabled]="!seleccionado" (click)="completarTarea(seleccionado || 0)">
+      <span>✔️ Completar</span>
+    </button>
+
+ <!-- otra forma para deshabiliar un boton, con ngClass para cambiar la clase depende de la condicion -->
+ <button class="button-eliminarTarea"  [disabled]="!seleccionado" (click)="eliminar()">
+  <span> X Eliminar</span>
+</button>
+  </div>
+
+
+  <p style="padding: 10px; background-color: #005a83; border-radius: 6px;border: 2px solid black; width: fit-content;transform: translate(155px, -3px);"  *ngIf="TareasVacias()"> No hay tareas completadas</p>
+
+
+  <!-- Botones para alternar entre las vistas -->
+  <button type="button" class="button-verTareas" (click)="alternarVista()">
+    {{ mostrandoCompletadas ? 'Ver tareas pendientes' : 'Ver tareas completadas' }}
+  </button>
+
+  <button type="button" class="btn-secundary-guardar" *ngIf="mostrandoCompletadas" (click)="guardarCompletadas()">
+    <i class="fas fa-save"></i> Guardar lista completadas
+  </button>
+
+<!-- Botón que abre o cierra el modal -->
+<button class="comic-button" *ngIf="!mostrandoCompletadas" (click)="abrirCerrarModal()">
+  {{ mostrarModal ? 'Cerrar' : 'Añadir tarea' }}
+</button>
+
+<!-- Modal para añadir tarea -->
+<div class="modal" *ngIf="mostrarModal" (click)="cerrarModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <form class="form" [formGroup]="contactForm" (ngSubmit)="addTarea()">
+      <h2>ORDENAR TAREAS</h2>
+      <label for="ordenar">Filtrar por</label>
+      <select formControlName="ordenarPor" class="form-control" id="ordenar" (change)="ordenarTareas()">
+        <option value="categoria">Categoría</option>
+        <option value="Maxtiempo">Max Tiempo</option>
+        <option value="Mintiempo">Min Tiempo</option>
+      </select>
+
+      <label for="ver">Ver solo categoría</label>
+      <select formControlName="ordenarPor" class="form-control" id="ver" (change)="verPorCategoria()">
+        <option value="">Selecciona categoría</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Estudio">Estudio</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Recreación">Recreación</option>
+        <option value="Ocio">Ocio</option>
+      </select>
+
+      <h2>AÑADIR NUEVA TAREA</h2>
+      <div class="form-group">
+        <label for="descripcion">Descripción tarea</label>
+        <input type="text" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Descripción de la tarea">
+      </div>
+      <div class="form-group">
+        <label for="tiempo">Tiempo tarea</label>
+        <input type="number" formControlName="tiempo" class="form-control" id="tiempo" placeholder="Tiempo de la tarea">
+      </div>
+      <div class="form-group">
+        <label for="categoria">Categoría tarea</label>
+        <select formControlName="categoria" class="form-control" id="categoria">
+          <option value="Trabajo">Trabajo</option>
+          <option value="Estudio">Estudio</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Recreación">Recreación</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Añadir</button>
+      <button type="button" class="btn btn-primary" (click)="cerrarModal()">Cerrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Paginación -->
+<div class="pagination-controls">
+  <button class="btn-next"(click)="prevPage()" [disabled]="paginaActual === 1">Anterior</button>
+  <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+  <button class="btn-next" (click)="nextPage()" [disabled]="paginaActual * tareasPorPagina >= totalTareas">Siguiente</button>
+</div>
+</div>
+</div>
+
+  <button class="btn-volver" (click)="NavigateTo()">Volver</button>

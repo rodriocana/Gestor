@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 150px;
+  background: #1e2c3f;
+  color: #ffffff;
+  display: flex;
+  border-right: 2px solid white;
+  flex-direction: column;
+  padding-top: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegúrate de que sea más alto que otros elementos */
+}
+
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu li {
+  margin: 15px 0;
+}
+
+.side-menu a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid white;
+  pointer-events: auto;  /* Asegúrate de que los enlaces sean clickeables */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.side-menu a:hover {
+  background: #374151;
+  color: #4caf50;
+}
+
+.side-menu a.Link-logo:hover {
+  background: #0062ff00;
+  color: #4caf50;
+}
+
+.Link-logo {
+  display: inline-block; /* Ajusta el enlace al tamaño del contenido */
+  padding: 0; /* Asegúrate de que no tenga relleno */
+  margin: 0px 30px; /* Sin márgenes */
+}
+
+.logo {
+  display: block; /* Hace que el enlace se ajuste exactamente a la imagen */
+  height: 64px;
+  width: 64px;
+  pointer-events: auto; /* Interacción solo en la imagen */
+}
+
+.side-menu i {
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+/* Active Link Styling */
+.side-menu .active {
+  background: #4caf50;
+  color: #ffffff;
+}

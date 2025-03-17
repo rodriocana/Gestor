@@ -1,0 +1,810 @@
+.container-gestor {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 60px;
+  justify-content: center;  /* Esto centra los elementos */
+}
+
+.brutal-record-manager {
+  perspective: 1000px;
+  max-width: 400px;
+  margin: 20px;
+  background-color: #ffffff;
+  border: 4px solid #000000;
+  box-shadow: 12px 12px 0 #000000;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+}
+
+.brutal-record-manager .brutal-toggle {
+  display: none;
+}
+
+.brutal-record-manager .brutal-button {
+  display: block;
+  width: 100%;
+  background-color: #5568be;
+  color: #000000;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: 4px solid #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.brutal-record-manager .brutal-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: transform 0.5s;
+
+}
+
+.brutal-record-manager .brutal-button:hover::after {
+  transform: rotate(45deg) translate(50%, 50%);
+
+}
+
+.brutal-record-manager .brutal-button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 #000000;
+
+}
+
+// ----
+
+.brutal-record-manager .brutal-toggle:checked + .brutal-button {
+  background-color: #4ecdc4;
+  animation: brutal-buttonPress 0.3s forwards;
+}
+
+@keyframes brutal-buttonPress {
+  0% {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 #000000;
+  }
+  50% {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000000;
+  }
+  100% {
+    transform: translate(0, 0);
+    box-shadow: 4px 4px 0 #000000;
+  }
+}
+
+/* Panel Adaptado con posicionamiento absoluto */
+.brutal-record-manager .brutal-panel {
+  display: none;
+  padding: 20px;
+
+  transform-origin: top;
+  transition: transform 0.5s, opacity 0.5s;
+  transform: scaleY(0);
+
+  opacity: 0;
+
+  /* Evita que el panel afecte al flujo */
+  position: absolute; /* Fija el panel */
+  top: 100%; /* Colócalo justo debajo del botón */
+  left: 0; /* Alineación horizontal */
+  right: 30; /* Alineación completa */
+  z-index: 10; /* Asegura que se muestre sobre otros elementos */
+}
+
+.brutal-record-manager .brutal-toggle:checked ~ .brutal-panel {
+  display: block;
+  animation: brutal-panelAppear 0.5s forwards;
+}
+
+@keyframes brutal-panelAppear {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.brutal-record-manager .brutal-toggle:checked ~ .brutal-record-manager {
+  transform: rotateX(5deg);
+}
+
+.brutal-record-manager .brutal-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.brutal-record-manager .brutal-title:hover {
+  transform: translateY(-2px);
+  color: #ff6b6b;
+}
+
+@keyframes brutal-titleShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(2px) rotate(2deg);
+  }
+}
+
+.brutal-record-manager .brutal-title:hover {
+  animation: brutal-titleShake 0.5s ease-in-out;
+}
+
+.brutal-record-manager .brutal-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.brutal-record-manager .brutal-radio {
+  display: none;
+}
+
+.brutal-record-manager .brutal-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffe66d;
+  border: 3px solid #000000;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.brutal-record-manager .brutal-option:hover {
+  transform: translate(-2px, -2px) rotate(2deg);
+  box-shadow: 5px 5px 0 #000000;
+}
+
+.brutal-record-manager .brutal-radio:checked + .brutal-option {
+  animation: brutal-optionSelect 0.3s forwards;
+}
+
+@keyframes brutal-optionSelect {
+  0% {
+    transform: translate(-2px, -2px) rotate(2deg);
+    box-shadow: 5px 5px 0 #000000;
+  }
+  50% {
+    transform: translate(3px, 3px) rotate(-1deg);
+    box-shadow: 0px 0px 0 #000000;
+  }
+  100% {
+    transform: translate(2px, 2px) rotate(0deg);
+    box-shadow: inset 3px 3px 0 #000000;
+  }
+}
+
+.brutal-record-manager .brutal-confirmation {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  border: 3px solid #000000;
+  background-color: #ffe66d;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.brutal-record-manager .brutal-radio:checked ~ .brutal-confirmation {
+  display: block;
+  animation: brutal-confirmationAppear 0.5s forwards;
+}
+
+@keyframes brutal-confirmationAppear {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.brutal-record-manager .brutal-text {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.brutal-record-manager .brutal-input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 3px solid #000000;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+}
+
+// ---------------------------------------------------------- //
+
+/* Estilos para el segundo gestor de tareas */
+.brutal-record-manager-2 {
+  perspective: 1000px;
+  max-width: 400px;
+  margin: 20px;
+
+  background-color: #ffffff;
+  border: 4px solid #000000;
+  box-shadow: 12px 12px 0 #000000;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.brutal-record-manager-2 .brutal-toggle {
+  display: none;
+}
+
+.brutal-record-manager-2 .brutal-button {
+  display: block;
+  width: 100%;
+  background-color: #5568be;
+  color: #000000;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: 4px solid #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.brutal-record-manager-2 .brutal-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: transform 0.5s;
+}
+
+.brutal-record-manager-2 .brutal-button:hover::after {
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+.brutal-record-manager-2 .brutal-button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 #000000;
+}
+
+.brutal-record-manager-2 .brutal-toggle:checked + .brutal-button {
+  background-color: #4ecdc4;
+  animation: brutal-buttonPress 0.3s forwards;
+}
+
+@keyframes brutal-buttonPress {
+  0% {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 #000000;
+  }
+  50% {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000000;
+  }
+  100% {
+    transform: translate(0, 0);
+    box-shadow: 4px 4px 0 #000000;
+  }
+}
+
+.brutal-record-manager-2 .brutal-panel {
+  display: none;
+  padding: 20px;
+  border-top: 4px solid #000000;
+  transform-origin: top;
+  transition: transform 0.5s, opacity 0.5s;
+  transform: scaleY(0);
+  opacity: 0;
+
+  /* Evita que el panel afecte al flujo */
+  position: absolute; /* Fija el panel */
+  top: 100%; /* Colócalo justo debajo del botón */
+  left: 0; /* Alineación horizontal */
+  right: 0; /* Alineación completa */
+  z-index: 10; /* Asegura que se muestre sobre otros elementos */
+}
+
+.brutal-record-manager-2 .brutal-toggle:checked ~ .brutal-panel {
+  display: block;
+  animation: brutal-panelAppear 0.5s forwards;
+}
+
+@keyframes brutal-panelAppear {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.brutal-record-manager-2 .brutal-toggle:checked ~ .brutal-record-manager-2 {
+  transform: rotateX(5deg);
+}
+
+.brutal-record-manager-2 .brutal-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.brutal-record-manager-2 .brutal-title:hover {
+  transform: translateY(-2px);
+  color: #ff6b6b;
+}
+
+@keyframes brutal-titleShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(2px) rotate(2deg);
+  }
+}
+
+.brutal-record-manager-2 .brutal-title:hover {
+  animation: brutal-titleShake 0.5s ease-in-out;
+}
+
+.brutal-record-manager-2 .brutal-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.brutal-record-manager-2 .brutal-radio {
+  display: none;
+}
+
+.brutal-record-manager-2 .brutal-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #3aa751;
+  border: 3px solid #000000;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.brutal-record-manager-2 .brutal-option:hover {
+  transform: translate(-2px, -2px) rotate(-2deg);
+  box-shadow: 5px 5px 0 #000000;
+}
+
+.brutal-record-manager-2 .brutal-radio:checked + .brutal-option {
+  animation: brutal-optionSelect 0.3s forwards;
+}
+
+@keyframes brutal-optionSelect {
+  0% {
+    transform: translate(-2px, -2px) rotate(2deg);
+    box-shadow: 5px 5px 0 #000000;
+  }
+  50% {
+    transform: translate(3px, 3px) rotate(-1deg);
+    box-shadow: 0px 0px 0 #000000;
+  }
+  100% {
+    transform: translate(2px, 2px) rotate(0deg);
+    box-shadow: inset 3px 3px 0 #000000;
+  }
+}
+
+.brutal-record-manager-2 .brutal-confirmation {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  border: 3px solid #000000;
+  background-color: #ffe66d;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.brutal-record-manager-2 .brutal-radio:checked ~ .brutal-confirmation {
+  display: block;
+  animation: brutal-confirmationAppear 0.5s forwards;
+}
+
+@keyframes brutal-confirmationAppear {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.brutal-record-manager-2 .brutal-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #000000;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  transition: border 0.3s;
+}
+
+.brutal-record-manager-2 .brutal-input:focus {
+  border: 2px solid #4ecdc4;
+}
+
+.brutal-record-manager-2 .brutal-proceed {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #4ecdc4;
+  color: #000000;
+  cursor: not-allowed;
+  border: 3px solid #000000;
+  transition: background-color 0.3s;
+}
+
+.brutal-record-manager-2 .brutal-input:valid + .brutal-proceed {
+  cursor: pointer;
+  background-color: #ff6b6b;
+}
+
+
+/* From Uiverse.io by Nawsome */
+.wheel-and-hamster {
+  --dur: 1s;
+  position: relative;
+  width: 12em;
+  height: 12em;
+  font-size: 14px;
+  animation: moveLeftRight 10s ease-in-out infinite, rotateHamster 10s ease-in-out infinite; /* Añadida animación para rotar el hámster */
+
+}
+
+.wheel,
+.hamster,
+.hamster div,
+.spoke {
+  position: absolute;
+}
+
+.wheel,
+.spoke {
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel {
+  background: radial-gradient(100% 100% at center,hsla(0,0%,60%,0) 47.8%,hsl(0,0%,60%) 48%);
+  z-index: 2;
+}
+
+.hamster {
+  animation: hamster var(--dur) ease-in-out infinite;
+  top: 50%;
+  left: calc(50% - 3.5em);
+  width: 7em;
+  height: 3.75em;
+  transform: rotate(4deg) translate(-0.8em,1.85em);
+  transform-origin: 50% 0;
+  z-index: 1;
+}
+
+.hamster__head {
+  animation: hamsterHead var(--dur) ease-in-out infinite;
+  background: hsl(30,90%,55%);
+  border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
+  box-shadow: 0 -0.25em 0 hsl(30,90%,80%) inset,
+		0.75em -1.55em 0 hsl(30,90%,90%) inset;
+  top: 0;
+  left: -2em;
+  width: 2.75em;
+  height: 2.5em;
+  transform-origin: 100% 50%;
+}
+
+.hamster__ear {
+  animation: hamsterEar var(--dur) ease-in-out infinite;
+  background: hsl(0,90%,85%);
+  border-radius: 50%;
+  box-shadow: -0.25em 0 hsl(30,90%,55%) inset;
+  top: -0.25em;
+  right: -0.25em;
+  width: 0.75em;
+  height: 0.75em;
+  transform-origin: 50% 75%;
+}
+
+.hamster__eye {
+  animation: hamsterEye var(--dur) linear infinite;
+  background-color: hsl(0,0%,0%);
+  border-radius: 50%;
+  top: 0.375em;
+  left: 1.25em;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.hamster__nose {
+  background: hsl(0,90%,75%);
+  border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
+  top: 0.75em;
+  left: 0;
+  width: 0.2em;
+  height: 0.25em;
+}
+
+.hamster__body {
+  animation: hamsterBody var(--dur) ease-in-out infinite;
+  background: hsl(30,90%,90%);
+  border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
+  box-shadow: 0.1em 0.75em 0 hsl(30,90%,55%) inset,
+		0.15em -0.5em 0 hsl(30,90%,80%) inset;
+  top: 0.25em;
+  left: 2em;
+  width: 4.5em;
+  height: 3em;
+  transform-origin: 17% 50%;
+  transform-style: preserve-3d;
+}
+
+.hamster__limb--fr,
+.hamster__limb--fl {
+  clip-path: polygon(0 0,100% 0,70% 80%,60% 100%,0% 100%,40% 80%);
+  top: 2em;
+  left: 0.5em;
+  width: 1em;
+  height: 1.5em;
+  transform-origin: 50% 0;
+}
+
+.hamster__limb--fr {
+  animation: hamsterFRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,80%) 80%,hsl(0,90%,75%) 80%);
+  transform: rotate(15deg) translateZ(-1px);
+}
+
+.hamster__limb--fl {
+  animation: hamsterFLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,90%) 80%,hsl(0,90%,85%) 80%);
+  transform: rotate(15deg);
+}
+
+.hamster__limb--br,
+.hamster__limb--bl {
+  border-radius: 0.75em 0.75em 0 0;
+  clip-path: polygon(0 0,100% 0,100% 30%,70% 90%,70% 100%,30% 100%,40% 90%,0% 30%);
+  top: 1em;
+  left: 2.8em;
+  width: 1.5em;
+  height: 2.5em;
+  transform-origin: 50% 30%;
+}
+
+.hamster__limb--br {
+  animation: hamsterBRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,80%) 90%,hsl(0,90%,75%) 90%);
+  transform: rotate(-25deg) translateZ(-1px);
+}
+
+.hamster__limb--bl {
+  animation: hamsterBLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,90%) 90%,hsl(0,90%,85%) 90%);
+  transform: rotate(-25deg);
+}
+
+.hamster__tail {
+  animation: hamsterTail var(--dur) linear infinite;
+  background: hsl(0,90%,85%);
+  border-radius: 0.25em 50% 50% 0.25em;
+  box-shadow: 0 -0.2em 0 hsl(0,90%,75%) inset;
+  top: 1.5em;
+  right: -0.5em;
+  width: 1em;
+  height: 0.5em;
+  transform: rotate(30deg) translateZ(-1px);
+  transform-origin: 0.25em 0.25em;
+}
+
+.spoke {
+  animation: spoke var(--dur) linear infinite;
+  background: radial-gradient(100% 100% at center,hsl(0,0%,60%) 4.8%,hsla(0,0%,60%,0) 5%),
+		linear-gradient(hsla(0,0%,55%,0) 46.9%,hsl(0,0%,65%) 47% 52.9%,hsla(0,0%,65%,0) 53%) 50% 50% / 99% 99% no-repeat;
+}
+
+/* Animations */
+@keyframes hamster {
+  from, to {
+    transform: rotate(10deg) translate(-0.8em,1.85em);
+  }
+
+  50% {
+    transform: rotate(0) translate(-0.8em,1.85em);
+  }
+}
+
+@keyframes hamsterHead {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes hamsterEye {
+  from, 90%, to {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes hamsterEar {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes hamsterBody {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes hamsterFRLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(50deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-30deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterFLLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(-30deg);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(50deg);
+  }
+}
+
+@keyframes hamsterBRLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(-60deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(20deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterBLLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(20deg);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-60deg);
+  }
+}
+
+@keyframes hamsterTail {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(30deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(10deg) translateZ(-1px);
+  }
+}
+
+@keyframes spoke {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+.wheel-and-hamster {
+  --dur: 1s;
+  position: relative;
+  width: 12em;
+  z-index: 10;
+  height: 12em;
+  font-size: 14px;
+  animation: moveLeftRight 10s ease-in-out infinite; /* Añadida animación para rotar el hámster */
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0); /* Empieza a la izquierda y con dirección normal */
+  }
+  50% {
+    transform: translateX(100vw);  /* Al llegar al final, se voltea horizontalmente */
+  }
+  100% {
+    transform: translateX(0); /* Vuelve al inicio y se pone derecho otra vez */
+  }
+}
+
+@keyframes rotateHamster {
+  0% {
+    transform:  scaleX(1); /* Empieza a la izquierda y con dirección normal */
+  }
+  50% {
+    transform: scaleX(-1); /* Al llegar al final, se voltea horizontalmente */
+  }
+  100% {
+    transform:  scaleX(1); /* Vuelve al inicio y se pone derecho otra vez */
+  }
+}
+
+.container-hamster {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  margin: 0;
+  padding-top: 628px;
+  height:auto;  /* Altura fija */
+}

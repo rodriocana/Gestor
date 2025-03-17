@@ -1,0 +1,21 @@
+<div class="contenedor">
+  <div class="game">
+    <h2>Tres en Raya</h2>
+    <div class="board">
+      <div *ngFor="let row of [0,1,2]; let i=index">
+        <button
+          *ngFor="let col of [0,1,2]; let j=index"
+          [ngClass]="{'x': board[i][j] === 'X', 'o': board[i][j] === 'O'}"
+          [disabled]="board[i][j] || winner"
+          (click)="play(i,j)">
+          <img *ngIf="board[i][j] === 'X'" style="width: 70px; height: 80px; filter: brightness(1.1);"src="https://logodownload.org/wp-content/uploads/2018/11/sevilla-fc-logo-1.png" alt="X">
+          <img *ngIf="board[i][j] === 'O'" src="https://t.resfu.com/img_data/shields_basket/55.png?v=5" alt="O">
+        </button>
+      </div>
+    </div>
+    <div class="winner" *ngIf="winner">
+      ¡Ganador: {{winner}}!
+    </div>
+    <button class="restart-btn" (click)="resetGame()">Reiniciar</button>
+  </div>
+</div>

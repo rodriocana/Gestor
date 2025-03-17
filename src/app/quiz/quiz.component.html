@@ -1,0 +1,33 @@
+<div *ngIf="!isGameOver" class="quiz-container">
+  <div class="quiz-header">
+    <h2>¡Juego de Preguntas!</h2>
+    <p>Tiempo: {{ timer }} segundos</p>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" [style.width.%]="(timer / 30) * 100"></div>
+  </div>
+
+  <div class="question">
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+  </div>
+
+  <div class="options">
+    <button *ngFor="let option of questions[currentQuestionIndex].options"
+            [ngClass]="{'selected': selectedAnswer === option}"
+            (click)="selectAnswer(option)">
+      {{ option }}
+    </button>
+  </div>
+
+  <div class="actions">
+    <button (click)="checkAnswer()" [disabled]="!selectedAnswer">Siguiente</button>
+  </div>
+</div>
+
+<div *ngIf="isGameOver" class="game-over">
+  <h3>¡Juego terminado!</h3>
+  <p>Puntuación: {{ score }} de {{ questions.length }}</p>
+  <button (click)="restartGame()">Reiniciar</button>
+</div>

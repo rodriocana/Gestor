@@ -1,0 +1,111 @@
+/* General container styling */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten */
+  justify-content: left; /* Centra los elementos en el eje horizontal */
+  row-gap: 10px;
+  column-gap: 10px;
+  margin: 2rem auto;
+  max-width: 100%; /* Asegura que no exceda el ancho de la pantalla */
+  box-sizing: border-box; /* Incluye paddings y bordes en el tamaño total */
+  background-position: center;
+}
+
+/* Form styling */
+.form {
+  max-width: 500px;
+  width: 100%;
+  margin: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Garantiza que padding esté incluido en el ancho */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #fca421;
+}
+
+.cajaImg {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: transform 0.5s ease;
+}
+
+.cajaImg {
+  display: inline-block; /* Permite que la caja se ajuste al tamaño de su contenido */
+  padding: 10px; /* Elimina cualquier relleno interno adicional */
+  margin: 0.5rem; /* Espaciado entre las cajas */
+  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor de la caja */
+  background-color: #fff;
+  transition: transform 0.5s ease;
+}
+
+.cajaImg img {
+  display: block; /* Asegura que la imagen no tenga márgenes externos */
+  max-width: 100%; /* Evita que la imagen se desborde del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.cajaImg.small img {
+  max-width: 200px; /* Tamaño reducido para el estado "pequeño" */
+  height: auto;
+  transform: scale(0.8); /* Opcional: efecto de escala */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Cambia a diseño en columna */
+    align-items: center; /* Centra los elementos */
+  }
+}

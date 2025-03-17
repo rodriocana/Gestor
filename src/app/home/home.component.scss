@@ -1,0 +1,418 @@
+// /* General */
+// body {
+//   font-family: Arial, sans-serif;
+//   background-color: #f4f7fc;
+//   color: #333;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// /* Títulos */
+// h2 {
+//   font-size: 24px;
+//   color: #d9534f;
+//   font-family: Verdana, Geneva, Tahoma, sans-serif;
+//   text-align: center;
+//   margin-top: 20px;
+// }
+
+// /* Contenedor para la tabla */
+// .container {
+//   display: flex;
+//   justify-content: center;  /* Centra la tabla horizontalmente */
+//   align-items: center;      /* Centra la tabla verticalmente (si quieres) */
+//   flex-direction: column;
+// }
+
+
+// .containerdos {
+//   display: flex;
+//   justify-content: center;  /* Centra la tabla horizontalmente */
+//   align-items: center;      /* Centra la tabla verticalmente (si quieres) */
+//   flex-direction: column;
+// }
+
+
+
+// /* Estilo actualizado para la tabla */
+// table {
+//   width: 55%;
+//   border-collapse: separate; /* Cambiado a 'separate' para aplicar bordes redondeados */
+//   border-spacing: 0; /* Elimina espacios entre celdas */
+//   border: 2px solid #ddd;
+//   border-radius: 12px; /* Bordes redondeados */
+//   overflow: hidden; /* Asegura que el contenido no salga del borde redondeado */
+//   margin: 20px 0;
+//   background-color: white;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto más moderno */
+// }
+// table th, table td {
+//   padding: 12px;
+//   text-align: left;
+//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+// }
+
+// table th {  // Titulo de la tabla
+//   background-color: #1f7fbe;
+//   color: white;
+//   font-weight: bold;
+//   text-transform: uppercase; /* Letras en mayúscula */
+// }
+
+// table td {
+//   background-color: #2b0707;
+//   color: #ffffff;
+//   border: 0.5px solid black;
+// }
+
+// /* Estilo para las esquinas superiores redondeadas */
+// table th:first-child {
+//   border-top-left-radius: 12px;
+// }
+
+// table th:last-child {
+//   border-top-right-radius: 12px;
+// }
+
+// table tr:last-child td:first-child {
+//   border-bottom-left-radius: 12px;
+// }
+
+// table tr:last-child td:last-child {
+//   border-bottom-right-radius: 12px;
+// }
+// /* Filas seleccionadas */
+
+
+// /* Formulario */
+// .form {
+//   background-color: #fff;
+//   padding: 20px;
+//   border-radius: 8px;
+//   box-shadow: 0 0px 3px rgba(0, 0, 0, 1);
+//   margin: 20px auto;
+//   width: 50%;
+//   border: 2px solid #5b9bd5;
+// }
+
+// .modal-content{
+//   width: 2000px;
+// }
+// .form h2 {
+//   font-size: 24px;
+//   color: #d9534f;
+//   text-align: center;
+//   margin-top: 20px;
+// }
+
+// .form .form-group {
+//   margin-bottom: 15px;
+// }
+
+// .form .form-group label {
+//   display: block;
+//   font-size: 14px;
+//   color: #333;
+//   margin-bottom: 5px;
+// }
+
+// .form .form-group input,
+// .form .form-group textarea {
+//   width: 100%;
+//   padding: 10px;
+//   font-size: 14px;
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+//   box-sizing: border-box;
+// }
+
+// .form .form-group input:focus,
+// .form .form-group textarea:focus {
+//   border-color: #4CAF50;
+//   outline: none;
+// }
+
+// .form .form-group textarea {
+//   resize: vertical;
+//   min-height: 100px;
+// }
+
+// .form button {
+//   background-color: #4CAF50;
+//   color: white;
+//   padding: 10px 20px;
+//   margin: 10px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+// }
+
+// .form button:hover {
+//   background-color: #45a049;
+// }
+
+// /* Responsive Design */
+// @media (max-width: 768px) {
+//   .form {
+//     width: 90%;
+//   }
+
+//   table {
+//     width: 100%;
+//   }
+// }
+
+// /* Botón de contador */
+// .btn-contador {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 20px;
+//   padding: 10px;
+//   border-radius: 10px;
+//   background-color: #4CAF50;
+// }
+
+// /* Estilo para el botón de eliminar */
+// .btn-danger {
+//   background-color: rgb(202, 50, 50);
+//   color: white;
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   color: white;
+
+// }
+
+// .btn-danger:hover {
+//   background-color: #c9302c;
+// }
+
+// .btn-secundary{
+
+//   background-color: #2dbddb;
+//   color: white;
+//   padding: 10px 20px;
+//   margin: 10px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   color: white;
+// }
+
+// .btn-icon-tic:disabled {
+//   background-color: transparent; /* Fondo transparente */
+//   color: rgba(0, 0, 0, 0.5); /* Color de texto más suave para mostrar deshabilitado */
+//   border: 1px solid rgba(0, 0, 0, 0.2); /* Borde más tenue */
+//   cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+// }
+
+// /* Estilo base para los select */
+// select {
+//   width: 100%;
+//   padding: 10px;
+//   font-size: 16px;
+//   border: 1px solid #ccc;
+//   border-radius: 8px;
+//   background-color: #f9f9f9;
+//   appearance: none; /* Elimina el estilo predeterminado de los navegadores */
+//   -webkit-appearance: none; /* Elimina el estilo predeterminado en Safari */
+//   -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
+//   outline: none;
+//   box-sizing: border-box;
+//   transition: all 0.3s ease;
+// }
+
+// /* Estilo para el contorno y fondo cuando el select está en foco */
+// select:focus {
+//   border-color: #5b9bd5;
+//   background-color: #e6f0f7;
+//   box-shadow: 0 0 8px rgba(91, 155, 213, 0.5);
+// }
+
+// /* Estilo de las opciones dentro del select */
+// select option {
+//   padding: 8px;
+//   background-color: #fff;
+//   font-size: 16px;
+// }
+
+// /* Cambiar el color de fondo y el texto de la opción seleccionada */
+
+// /* Estilo para el label dentro de un formulario (form-group) */
+// .form-group {
+//   margin-bottom: 20px;
+// }
+
+// label {
+//   display: block;
+//   margin-bottom: 8px;
+//   font-weight: 600;
+//   font-size: 14px;
+//   color: #333;
+// }
+
+// /* Añadir icono personalizado al select */
+// .select-wrapper {
+//   position: relative;
+// }
+
+// .select-wrapper::after {
+//   content: '\f0d7'; /* Icono de una flecha hacia abajo */
+//   font-family: 'FontAwesome';
+//   position: absolute;
+//   top: 50%;
+//   right: 10px;
+//   transform: translateY(-50%);
+//   font-size: 16px;
+//   color: #aaa;
+// }
+
+// /* Cambio del color del icono cuando el select está en foco */
+// select:focus + .select-wrapper::after {
+//   color: #5b9bd5;
+// }
+
+// /* Estilo base para los labels */
+// label {
+//   font-size: 16px;
+//   font-weight: 600;
+//   padding: 10px;
+//   color: #333;
+//   margin-bottom: 8px;
+//   display: block;
+//   text-transform: capitalize; /* Convierte la primera letra de cada palabra a mayúscula */
+//   transition: color 0.3s ease; /* Transición suave para el color */
+// }
+
+// /* Estilo cuando el campo está en foco (cuando el input o select está activo) */
+// input:focus + label, select:focus + label {
+//   color: #5b9bd5; /* Cambia el color del label cuando el campo está en foco */
+//   font-weight: bold; /* Hace el texto más grueso */
+// }
+
+
+// // /* Colores específicos para cada categoría */
+// // .trabajo {
+// //   background-color: #d1ecf1; /* Azul claro para Trabajo */
+// // }
+
+// // .ocio {
+// //   background-color: #0b8fa7; /* Azul claro para Trabajo */
+// // }
+
+// // .estudio {
+// //   background-color: #d4edda; /* Verde claro para Estudio */
+// // }
+
+// // .hogar {
+// //   background-color: #fff3cd; /* Amarillo claro para Hogar */
+// // }
+
+// // .recreacion {
+// //   background-color: #5705c26b; /* Rojo suave para Recreación */
+// // }
+
+// // /* Opcional: Colores al hacer hover o al seleccionar */
+// tr.selected {
+//   background-color: #e90707;
+//   color:white;
+//   transition: all 0.2s ease; /* Agrega transición suave */
+//   font-size: 18px; /* Aumenta el tamaño del texto al pasar el mouse */
+//   height: 10px; /* Cambia la altura al pasar el mouse */
+// }
+
+
+// tr {
+//   transition: all 0.2s ease; /* Transición para todos los cambios */
+// }
+
+// td:hover {
+//   cursor: pointer;
+// }
+
+// tr {
+//   transition: background-color 0.3s ease;
+// }
+
+// .trabajo td {
+//   color: #000000; /* Azul */
+//   background-color: #d9544f98;
+// }
+
+
+
+// .estudio td {
+//   color: #000000; /* Verde */
+//   background-color: rgba(44, 180, 146, 0.699);
+// }
+
+// .hogar td {
+//   color: #000000; /* Amarillo */
+//   background-color: rgba(1, 153, 255, 0.589);
+// }
+
+// .ocio td {
+//   color: #000000; /* Amarillo */
+//   background-color: rgba(1, 196, 255, 0.589);
+// }
+
+// .recreacion td {
+//   color: #000000; /* Rojo */
+//   background-color: rgba(0, 47, 255, 0.425);
+// }
+
+// .icon-tic-container {
+//   margin-top: 10px;
+//   color: white;
+//   display: flex;
+//   padding-bottom: 20px;
+//   gap: 10px;
+//   justify-content: center;
+// }
+
+// .btn-icon-tic {
+//   background-color: #4fb364;
+//   color: white;
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   color: white;
+// }
+
+// .btn-secundary-guardar{
+//   background-color: #f09745;
+//   color: white;
+//   padding: 10px 20px;
+//   margin: 10px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   color: white;
+
+
+// }
+
+// .btn:disabled {
+//   opacity: 0.5;  /* Añadir opacidad para simular el estado inhabilitado */
+//   pointer-events: none; /* Asegura que el botón no sea interactivo */
+//   background-color: #b42323;
+//   color: white;
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   color: white;
+// }
+
+// .tdColor{
+//   background-color: blue;
+// }

@@ -1,0 +1,130 @@
+<div class="container-gestor">
+<div class="brutal-record-manager">
+  <input type="checkbox" id="brutal-action-toggle" class="brutal-toggle" />
+  <label for="brutal-action-toggle" class="brutal-button">
+    <span class="brutal-icon">▣</span>
+    Gestor de tareas
+  </label>
+
+  <div class="brutal-panel">
+    <p class="brutal-title">SELECT ACTION:</p>
+    <div class="brutal-options">
+      <input
+        type="radio"
+        id="brutal-archive"
+        name="brutal-action"
+        class="brutal-radio"
+      />
+      <label for="brutal-archive" class="brutal-option" (click)="navigateTo()">
+        <span class="brutal-icon">🖿</span>
+        TAREAS
+      </label>
+
+      <input
+        type="radio"
+        id="brutal-transfer"
+        name="brutal-action"
+        class="brutal-radio"
+      />
+      <label for="brutal-transfer" class="brutal-option">
+        <span class="brutal-icon">↹</span>
+        TRANSFER
+      </label>
+
+      <input
+        type="radio"
+        id="brutal-update"
+        name="brutal-action"
+        class="brutal-radio"
+      />
+      <label for="brutal-update" class="brutal-option">
+        <span class="brutal-icon">✎</span>
+        UPDATE
+      </label>
+    </div>
+
+    <div class="brutal-confirmation">
+      <p class="brutal-text">TYPE 'CONFIRM' TO PROCEED:</p>
+      <input type="text" class="brutal-input" pattern="CONFIRM" required="" />
+      <button class="brutal-proceed" disabled="">PROCEED</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Segundo Gestor de Tareas -->
+<div class="brutal-record-manager-2">
+  <input type="checkbox" id="brutal-action-toggle-2" class="brutal-toggle" />
+  <label for="brutal-action-toggle-2" class="brutal-button">
+    <span class="brutal-icon">▣</span>
+   JUEGOS
+  </label>
+
+  <div class="brutal-panel">
+    <p class="brutal-title">SELECT ACTION:</p>
+    <div class="brutal-options">
+      <input
+        type="radio"
+        id="brutal-archive-2"
+        name="brutal-action-2"
+        class="brutal-radio"
+      />
+      <label for="brutal-archive-2" class="brutal-option" (click)="navigateToThree()">
+        <span class="brutal-icon">🖿</span>
+      TRES EN RAYA
+      </label>
+
+
+
+      <input
+        type="radio"
+        id="brutal-transfer-2"
+        name="brutal-action-2"
+        class="brutal-radio"
+      />
+      <label for="brutal-transfer-2" class="brutal-option" (click)="navigateToBreakout()">
+        <span class="brutal-icon">↹</span>
+        BREAKOUT
+      </label>
+
+      <input
+        type="radio"
+        id="brutal-update-2"
+        name="brutal-action-2"
+        class="brutal-radio"
+      />
+      <label for="brutal-update-2" class="brutal-option" (click)="navigateToQuiz()">
+        <span class="brutal-icon">✎</span>
+        QUIZ GAME
+      </label>
+    </div>
+
+    <div class="brutal-confirmation">
+      <p class="brutal-text">TYPE 'CONFIRM' TO PROCEED:</p>
+      <input type="text" class="brutal-input" pattern="CONFIRM" required="" />
+      <button class="brutal-proceed" disabled="">PROCEED</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container-hamster">
+<div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+	<div class="wheel"></div>
+	<div class="hamster">
+		<div class="hamster__body">
+			<div class="hamster__head">
+				<div class="hamster__ear"></div>
+				<div class="hamster__eye"></div>
+				<div class="hamster__nose"></div>
+			</div>
+			<div class="hamster__limb hamster__limb--fr"></div>
+			<div class="hamster__limb hamster__limb--fl"></div>
+			<div class="hamster__limb hamster__limb--br"></div>
+			<div class="hamster__limb hamster__limb--bl"></div>
+			<div class="hamster__tail"></div>
+		</div>
+	</div>
+	<div class="spoke"></div>
+</div>
+</div>
